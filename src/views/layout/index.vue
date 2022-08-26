@@ -26,6 +26,7 @@ import LayoutNav from './components/layout-nav.vue'
   }
   &-page {
     flex: 1;
+    background-color: #fafbfc;
     .home-page {
       height: 100%;
       overflow: auto;

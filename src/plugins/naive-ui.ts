@@ -7,6 +7,10 @@ import {
   NLayoutSider,
   NMenu,
   NInput,
+  NGrid,
+  NGi,
+  NSelect,
+  NDataTable,
 } from "naive-ui"
 
 const naive = create({
@@ -18,6 +22,10 @@ const naive = create({
     NLayoutSider,
     NMenu,
     NInput,
+    NGrid,
+    NGi,
+    NSelect,
+    NDataTable,
   ]
 })
 
