@@ -7,7 +7,7 @@
     <div class="layout-header-right">
       <n-tooltip placement="bottom" trigger="hover">
         <template #trigger>
-          <NIcon size="24">
+          <NIcon size="24" @click="onShowSearch">
             <SearchOutline />
           </NIcon>
         </template>
@@ -19,9 +19,19 @@
       <span>admin</span>
     </div>
   </div>
+  <LayoutSearch ref="layoutSearchRef" />
 </template>
 <script setup lang="ts">
+import { ref } from 'vue'
 import { SearchOutline, PersonCircleOutline } from '@vicons/ionicons5'
+import LayoutSearch from './layout-search.vue'
+const layoutSearchRef = ref(null)
+const onShowSearch = () => {
+  const div: any = layoutSearchRef.value
+  if (div) {
+    div.show()
+  }
+}
 </script>
 <style lang="less" scoped>
 .layout-header {

@@ -89,6 +89,30 @@ onMounted(() => getTableData())
       height: 100%;
       padding: 12px;
       box-sizing: border-box;
+      ::v-deep(.n-data-table-tr) {
+        .flex-div {
+          display: flex;
+          align-items: center;
+          & > .n-icon {
+            margin-right: 4px;
+            cursor: pointer;
+          }
+        }
+        .filter-span {
+          position: relative;
+          .n-icon {
+            display: none;
+          }
+        }
+        &:hover {
+          .filter-span {
+            position: relative;
+            .n-icon {
+              display: block;
+            }
+          }
+        }
+      }
     }
   }
 }

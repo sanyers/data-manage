@@ -1,3 +1,9 @@
+import { h } from "vue"
+import InputType from './components/input-type.vue'
+import SpanType from './components/span-type.vue'
+import PopoverLink from './components/popover-link.vue'
+import ActionBtn from './components/action-btn.vue'
+
 export const filterList = () => [
   {
     type: 'select',
@@ -46,10 +52,63 @@ export const columns = () => [
       tooltip: true
     }
   },
-  { title: '开发负责人', key: 'techFzr', },
-  { title: '运维负责人', key: 'operationFzr', },
-  { title: '归属系统名称', key: 'systemName', },
-  { title: '归属系统编号', key: 'systemNo', }
+  {
+    title: '开发负责人',
+    key: 'techFzr',
+    render(row: any) {
+      const inputType = 'select'
+      const value = row.techFzr
+      const options: Array<any> = [
+        { label: '小明', value: '小明' },
+        { label: '小李', value: '小李' }
+      ]
+      const onChangeValue = (val: any) => {
+        console.log(val)
+      }
+      return h(InputType, { class: 'flex-div', inputType, value, options, onChangeValue })
+    }
+  },
+  {
+    title: '运维负责人',
+    key: 'operationFzr',
+    render(row: any) {
+      const inputType = 'input'
+      const value = row.operationFzr
+      const onChangeValue = (val: any) => {
+        console.log(val)
+      }
+      return h(InputType, { class: 'flex-div', inputType, value, onChangeValue })
+    }
+  },
+  {
+    title: '归属系统名称',
+    key: 'systemName',
+    render(row: any) {
+      const links = [
+        { name: '数据分析', path: '/analysis' },
+        { name: '数据同步', path: '/datasync' }
+      ]
+      const value = row.systemName
+      const p = h(PopoverLink, { links })
+      const s = h(SpanType, { value })
+      return h('div', { class: 'flex-div' }, [p, s])
+    }
+  },
+  {
+    title: '归属系统编号',
+    key: 'systemNo',
+    render(row: any) {
+      const value = row.systemNo
+      return h(SpanType, { value })
+    }
+  },
+  {
+    title: '操作',
+    key: 'actions',
+    render(row: any) {
+      return h(ActionBtn, { data: row })
+    }
+  }
 ]
 export const tableList = () => [
   {
@@ -94,7 +153,7 @@ export const tableList = () => [
     serviceNo: 'BS188-newone-bbb',
     techFzr: '张三',
     operationFzr: '李四',
-    systemName: '官网系统',
+    systemName: '资讯系统',
     systemNo: 'BS188',
   },
   {
@@ -103,7 +162,7 @@ export const tableList = () => [
     serviceNo: 'BS188-newone-ccc',
     techFzr: '张三',
     operationFzr: '李四',
-    systemName: '官网系统',
+    systemName: '资讯系统',
     systemNo: 'BS188',
   }
 ]
