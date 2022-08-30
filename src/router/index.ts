@@ -31,7 +31,7 @@ const routes: Array<RouteRecordRaw> = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory('/data-manage/'),
   routes,
 })
 

@@ -4,7 +4,7 @@ import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/data-manage/',
+  base: './',
   plugins: [vue()],
   server: {
     host: true,
@@ -14,5 +14,18 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './src')
     }
+  },
+  build: {
+    rollupOptions: {
+      // https://rollupjs.org/guide/en/#outputmanualchunks
+      output: {
+        manualChunks: {
+          'home': ['./src/views/home/index.vue'],
+          'analysis': ['./src/views/analysis/index.vue'],
+          'datasync': ['./src/views/datasync/index.vue'],
+          'login': ['./src/views/login/index.vue'],
+        },
+      },
+    },
   }
 })
